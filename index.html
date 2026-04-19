@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joannah Elgario | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #0a0a0c;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --accent: #8b5cf6; /* Modern Violet */
+      --accent-glow: rgba(139, 92, 246, 0.4);
+      --text-main: #ffffff;
+      --text-dim: #a1a1aa;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      margin: 0;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* --- NAVIGATION --- */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 12, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .nav-logo {
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: -1px;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent);
+    }
+
+    /* Active Underline */
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      bottom: -5px;
+      left: 0;
+    }
+
+    /* --- SECTIONS --- */
+    section {
+      display: none;
+      min-height: 100vh;
+      padding: 140px 10% 80px;
+      animation: fadeIn 0.8s ease;
+    }
+
+    section.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- HOME SECTION --- */
+    .hero-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-image-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .profile-img {
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      box-shadow: 0 0 40px var(--accent-glow);
+    }
+
+    .hero-content { flex: 1.2; }
+
+    .hero-content h1 {
+      font-size: 4.5rem;
+      margin: 0;
+      line-height: 1.1;
+      font-weight: 800;
+      background: linear-gradient(to right, #fff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-content h2 {
+      color: var(--accent);
+      font-size: 1.6rem;
+      margin: 15px 0 25px;
+    }
+
+    /* --- BUTTONS --- */
+    .btn-group { display: flex; gap: 15px; }
+
+    .btn {
+      padding: 14px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      cursor: pointer;
+      border: none;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 4px 15px var(--accent-glow);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.1);
+    }
+
+    /* --- GRID & CARDS --- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: 0.3s;
+      text-align: center;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      background: rgba(139, 92, 246, 0.05);
+      transform: translateY(-5px);
+    }
+
+    .card i {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    /* --- CHATBOX --- */
+    #chat-container {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 350px;
+      height: 480px;
+      background: #121214;
+      border-radius: 20px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.1);
+      z-index: 2000;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      padding: 18px;
+      background: var(--accent);
+      color: white;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #chat-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .msg {
+      padding: 12px 16px;
+      border-radius: 15px;
+      max-width: 85%;
+      font-size: 0.85rem;
+    }
+
+    .msg.bot { background: var(--card-bg); align-self: flex-start; color: #fff; }
+    .msg.user { background: var(--accent); align-self: flex-end; color: #fff; }
+
+    .chat-input-area {
+      display: flex;
+      padding: 15px;
+      background: rgba(255,255,255,0.03);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .chat-input-area input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: white;
+      outline: none;
+    }
+
+    @media (max-width: 900px) {
+      .hero-container { flex-direction: column; text-align: center; }
+      nav { flex-direction: column; gap: 15px; }
+      .hero-content h1 { font-size: 3rem; }
+      .profile-img { width: 280px; height: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">My Portfolio</div>
+    <div class="nav-links">
+      <a href="#home" class="active" onclick="showSection('home', this)">Home</a>
+      <a href="#certificates" onclick="showSection('certificates', this)">Certificates</a>
+      <a href="#videos" onclick="showSection('videos', this)">Videos</a>
+      <a href="#projects" onclick="showSection('projects', this)">Projects</a>
+      <a href="#contacts" onclick="showSection('contacts', this)">Contacts</a>
+    </div>
+  </nav>
+
+  <section id="home" class="active">
+    <div class="hero-container">
+      <div class="hero-image-wrapper">
+        <img src="/pics/Profile.png" class="profile-img" alt="Joannah Elgario">
+      </div>
+      <div class="hero-content">
+        <h1>Joannah Elgario</h1>
+        <h2>Creative Web Developer</h2>
+        <p>Turning complex problems into elegant, user-friendly digital solutions. Dedicated to clean code and modern aesthetics.</p>
+        
+        <div class="btn-group">
+          <a href="https://sg.docworkspace.com/d/sbRaqaKkev53PBlq_9u3spyn4d2j8xansli?sa=601.1074" download class="btn btn-primary">
+            <i class="fa-solid fa-file-pdf"></i> Download CV
+          </a>
+          <button class="btn btn-outline" onclick="toggleChat()">
+            <i class="fa-solid fa-comment-dots"></i> Chat with Assistant
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <h1 style="font-size: 2.5rem; text-align: center;">Certifications</h1>
+ <div class="grid">
+  <div class="card">
+    <img src="/pics/cert1.jpg" alt="Cert">
+    <h3>Certificate 1</h3>
+    <p></p>
+  </div>
+</div>
+  <div class="grid">
+   <div class="card">
+     <img src="/pics/Cert2.jpg" alt="Cert">
+     <h3>Certificate 2</h3>
+     <p>CISCO Networking
+Fundamentals</p>
+   </div>
+ </div>
+ <div class="grid">
+     <div class="card">
+    <img src="/pics/Sem3.jpg" alt="Cert">
+    <h3>Certificate 3</h3>
+    <p>Integrative Foundation for
+Innovative Systematic Solution</p>
+  </div>
+</div>
+    <div class="grid">
+      <div class="card">
+        <img src="/pics/Cisco.jpeg" alt="Cert">
+        <h3>Cisco Networking</h3>
+        <p>Essentials of Cybersecurity & Routing</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="videos">
+    <h1 style="font-size: 2.5rem; text-align: center;">Tutorials</h1>
+    <div class="grid">
+        <iframe width="100%" height="500" src="https://www.youtube.com/embed/4NJFIGSDJnk" frameborder="0" style="border-radius:15px;"></iframe>
+        <iframe width="100%" height="500" src="https://www.youtube.com/embed/VfSAm9VD1WQ" frameborder="0" style="border-radius:15px;"></iframe>
+         <iframe width="200%" height="500" src="https://youtube.com/embed/lvQ8WsLVUn4" frameborder="0" style="border-radius:15px;"></iframe>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h1 style="font-size: 2.5rem; text-align: center;">Work Gallery</h1>
+    <div class="grid">
+        <div class="card">
+            <img src="/pics/Figma.jpg" alt="E-commerce">
+            <h3>E-commerce Concept</h3>
+            <p>Designed in Figma for modern retailers.</p>
+            <a href="https://www.figma.com/proto/XJALd5IniS3PG2gmdIvvLV/Untitled?node-id=0-1&t=yMGcb5VHfe8wEwd5" target="_blank" class="btn btn-outline" style="padding: 8px 20px;"
+            >View Full Project</a>
+        </div>
+    </div>
+ <div class="grid">
+  <div class="card">
+          <img src="/pics/ELGARIO-Activity4.jpg" alt="T-shirt Layout">
+          <h3>T-Shirt Design</h3>
+          <p>Creative graphic layout and typography for custom apparel merchandise.</p>
+          <a href="https://drive.google.com/file/d/1sq2DVrGzXf5FYTXWzjxKo8T5DJyxRSfY/view?usp=drivesdk" target="_blank" class="btn btn-outline" style="padding: 8px 20px;">View Full Project</a>
+      </div>
+  </div>
+    
+  </section>
+
+  <section id="contacts">
+    <h1 style="font-size: 2.5rem; text-align: center;">Get In Touch</h1>
+    <div class="grid">
+        <div class="card">
+          <i class="fa-solid fa-envelope"></i>
+          <h3>Email</h3>
+          <p>joannahelgario@gmail.com</p>
+        </div>
+        <div class="card">
+          <i class="fa-brands fa-facebook"></i>
+          <h3>Facebook</h3>
+          <p>Joannah Elgario</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-phone"></i>
+          <h3>Phone</h3>
+          <p>09949058751</p>
+        </div>
+        <div class="card">
+          <i class="fa-brands fa-instagram"></i>
+          <h3>Instagram</h3>
+          <p>@joannahh_07</p>
+        </div>
+        <div class="card">
+          <i class="fa-brands fa-tiktok"></i>
+          <h3>TikTok</h3>
+          <p>@wannah08</p>
+        </div>
+    </div>
+  </section>
+
+  <div id="chat-container">
+    <div class="chat-header">
+      <span>Joannah's Assistant</span>
+      <i class="fa-solid fa-xmark" onclick="toggleChat()" style="cursor:pointer"></i>
+    </div>
+    <div id="chat-messages">
+      <div class="msg bot">Hello! I'm the portfolio assistant. How can I help you today?</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="chatInput" placeholder="Ask about skills or projects...">
+      <button onclick="handleChat()" class="btn btn-primary" style="padding: 10px 15px; border-radius: 8px;">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function showSection(id, link) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      link.classList.add('active');
+      window.scrollTo(0,0);
+    }
+
+    function toggleChat() {
+      const chat = document.getElementById('chat-container');
+      chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function handleChat() {
+      const input = document.getElementById('chatInput');
+      const messages = document.getElementById('chat-messages');
+      const text = input.value.toLowerCase().trim();
+
+      if (!text) return;
+
+      messages.innerHTML += `<div class="msg user">${input.value}</div>`;
+      input.value = '';
+
+      let response = "I'm still learning, but you can contact Joannah directly via the Contacts page!";
+      
+      if (text.includes("skill") || text.includes("know")) response = "Joannah is skilled in UI Design, Web Development (HTML/CSS), and various IT tools.";
+      if (text.includes("hello") || text.includes("hi")) response = "Hi there! Feel free to ask about Joannah's background or projects.";
+      if (text.includes("project")) response = "You can view her projects in the 'Work Gallery' section of this portfolio!";
+
+      setTimeout(() => {
+        messages.innerHTML += `<div class="msg bot">${response}</div>`;
+        messages.scrollTop = messages.scrollHeight;
+      }, 500);
+    }
+  </script>
+</body>
+</html>
